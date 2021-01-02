@@ -6,7 +6,7 @@ public class Customer
 {
 
 	private final String name;
-	private final Vector<Rental> rentals = new Vector<Rental> ();
+	private final Vector<Rental> rentals = new Vector<> ();
 
 	public Customer (String name) {
 		this.name = name;
@@ -24,11 +24,12 @@ public class Customer
 		double totalAmount = 0;
 		int	frequentRenterPoints = 0;
 		Enumeration<Rental> rentals = this.rentals.elements ();
-		String result = "Rental Record for " + getName () + "\n";
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append( String.format("Rental Record for %s\n", getName()) );
 		
 		while (rentals.hasMoreElements ()) {
 			double thisAmount = 0;
-			Rental each = (Rental)rentals.nextElement ();
+			Rental each = rentals.nextElement ();
 			
 			// determines the amount for each line
 			switch (each.getMovie ().getPriceCode ()) {
@@ -55,15 +56,14 @@ public class Customer
 				frequentRenterPoints++;
 			}
 				
-			result += "\t" + each.getMovie ().getTitle () + "\t" + String.valueOf (thisAmount) + "\n";
+			stringBuilder.append( String.format( "\t%s\t%.1f\n", each.getMovie().getTitle(), thisAmount ));
 			totalAmount += thisAmount;
 				
 		}
-		
-		result += "You owed " + String.valueOf (totalAmount) + "\n";
-		result += "You earned " + String.valueOf (frequentRenterPoints) + " frequent renter points\n";
 
-		return result;
+		stringBuilder.append(String.format("You owed %.1f\nYou earned %d frequent renter points\n", totalAmount, frequentRenterPoints));
+
+		return stringBuilder.toString();
 	}
 
 }
