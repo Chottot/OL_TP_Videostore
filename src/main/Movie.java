@@ -10,7 +10,7 @@ public class Movie
 	private int priceCode;
 	
 	public Movie (String title, int priceCode) {
-		this.title 		= title;
+		this.title = title;
 		this.priceCode 	= priceCode;
 	}
 	

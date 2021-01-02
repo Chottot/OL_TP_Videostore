@@ -5,7 +5,7 @@ public class Rental
 	private final int daysRented;
 
 	public Rental (Movie movie, int daysRented) {
-		this.movie 		= movie;
+		this.movie = movie;
 		this.daysRented = daysRented;
 	}
 	
