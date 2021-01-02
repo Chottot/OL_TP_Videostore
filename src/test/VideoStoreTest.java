@@ -1,14 +1,16 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VideoStoreTest
 {
 
-	public VideoStoreTest () {
+	private final Customer customer;
 
-	}
-	
-	protected void setUp ()  {
+	public VideoStoreTest () {
 		customer = new Customer ("Fred");
 	}
 
@@ -37,5 +39,4 @@ public class VideoStoreTest
 		Assertions.assertEquals ("Rental Record for Fred\n\tPlan 9 from Outer Space\t2.0\n\t8 1/2\t2.0\n\tEraserhead\t3.5\nYou owed 7.5\nYou earned 3 frequent renter points\n", customer.statement ());
 	}
 
-	private Customer customer;
 }
