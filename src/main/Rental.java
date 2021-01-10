@@ -58,6 +58,22 @@ public class Rental
 		return price;
 	}
 
+	/**
+	 *
+	 * @return the number of loyalty points earned with this rent
+	 *
+	 * we gain 1 loyalty points per rent
+	 * and 1 more if we rent e new released movie more than one day
+	 *
+	 */
+	public int getLoyaltyPoints(){
+		int loyaltyPoints = 1;
+		if(movie.getMovieType() == MovieType.NEW_RELEASE &&daysRented > 1) {
+			loyaltyPoints++;
+		}
+		return loyaltyPoints;
+	}
+
 	public Movie getMovie(){
 		return movie;
 	}

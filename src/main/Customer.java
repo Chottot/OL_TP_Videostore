@@ -27,13 +27,8 @@ public class Customer
 		for (Rental rent: rentals) {
 			double rentalCost = rent.getPrice();		// cost of the rent
 
-			loyaltyPoints++; // we get 1 loyalty point per rents
+			loyaltyPoints += rent.getLoyaltyPoints();
 
-			// we get 1 loyalty point if we rent a new released movie more than one day
-			if(rent.getMovie().getMovieType() == MovieType.NEW_RELEASE && rent.getDaysRented() > 1) {
-				loyaltyPoints++;
-			}
-				
 			stringBuilder.append( String.format( "\t%s\t%.1f\n", rent.getMovie().getTitle(), rentalCost ));
 
 			totalCost += rentalCost;

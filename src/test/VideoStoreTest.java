@@ -53,6 +53,32 @@ public class VideoStoreTest
 	}
 
 	@Test
+	public void test_rental_regular_movie_1_loyalty_point(){
+		Rental rent = new Rental(regularMovie,4 );
+		Assertions.assertEquals(1, rent.getLoyaltyPoints());
+	}
+
+	@Test
+	public void test_rental_children_movie_1_loyalty_point(){
+		Rental rent = new Rental(childrenMovie,4 );
+		Assertions.assertEquals(1, rent.getLoyaltyPoints());
+
+	}
+
+	@Test
+	public void test_rental_newRelease_movie_1_loyalty_point(){
+		Rental rent = new Rental(newReleaseMovie,1 );
+		Assertions.assertEquals(1, rent.getLoyaltyPoints());
+
+	}
+
+	@Test
+	public void test_rental_newRelease_movie_2_loyalty_point(){
+		Rental rent = new Rental(newReleaseMovie,2 );
+		Assertions.assertEquals(2, rent.getLoyaltyPoints());
+	}
+
+	@Test
 	public void testSingleNewReleaseStatement(){
 		customer.addRental( new Rental( new Movie("The Cell", MovieType.NEW_RELEASE), 3));
 		Assertions.assertEquals("Rental Record for Fred\n\tThe Cell\t9.0\nYou owed 9.0\nYou earned 2 frequent renter points\n", customer.statement());
