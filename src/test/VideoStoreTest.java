@@ -8,10 +8,49 @@ public class VideoStoreTest
 {
 	private final Customer customer;
 
+	private final Movie regularMovie = new Movie("regular movie title", MovieType.REGULAR);
+	private final Movie childrenMovie = new Movie("children movie title", MovieType.CHILDREN);
+	private final Movie newReleaseMovie = new Movie("new release movie title", MovieType.NEW_RELEASE);
+
 	public VideoStoreTest(){
 		customer = new Customer("Fred");
 	}
 
+	@Test
+	public void test_rental_regular_movie_2days(){
+		Rental rent = new Rental(regularMovie,2 );
+		Assertions.assertEquals(2, rent.getPrice());
+	}
+
+	@Test
+	public void test_rental_regular_movie_3days(){
+		Rental rent = new Rental(regularMovie,3 );
+		Assertions.assertEquals(3.5, rent.getPrice());
+	}
+
+	@Test
+	public void test_rental_children_movie_3days(){
+		Rental rent = new Rental(childrenMovie,3 );
+		Assertions.assertEquals(1.5, rent.getPrice());
+	}
+
+	@Test
+	public void test_rental_children_movie_4days(){
+		Rental rent = new Rental(childrenMovie,4 );
+		Assertions.assertEquals(3, rent.getPrice());
+	}
+
+	@Test
+	public void test_rental_newRelease_movie_1days(){
+		Rental rent = new Rental(newReleaseMovie,3 );
+		Assertions.assertEquals(3, rent.getPrice());
+	}
+
+	@Test
+	public void test_rental_newRelease_movie_4days(){
+		Rental rent = new Rental(newReleaseMovie,4 );
+		Assertions.assertEquals(3, rent.getPrice());
+	}
 
 	@Test
 	public void testSingleNewReleaseStatement(){

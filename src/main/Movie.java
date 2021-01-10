@@ -4,7 +4,7 @@ public class Movie
 {
 
 	private final String title;
-	private MovieType movieType;
+	private final MovieType movieType;
 	
 	public Movie (String title, MovieType movieType) {
 		this.title = title;
@@ -15,7 +15,6 @@ public class Movie
 		return movieType;
 	}
 
-	
 	public String getTitle(){
 		return title;
 	}
