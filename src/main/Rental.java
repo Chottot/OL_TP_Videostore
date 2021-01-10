@@ -1,4 +1,3 @@
-
 public class Rental
 {
 	private final Movie movie;
@@ -8,11 +7,11 @@ public class Rental
 		this.movie = movie;
 		this.daysRented = daysRented;
 	}
-	
+
 	public int getDaysRented(){
 		return daysRented;
 	}
-	
+
 	public Movie getMovie(){
 		return movie;
 	}

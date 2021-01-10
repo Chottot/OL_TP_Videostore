@@ -28,19 +28,19 @@ public class Customer
 			double rentalCost = 0;		// cost of the rent
 			
 			// determines the cost of the rent
-			switch (rent.getMovie().getPriceCode()) {
-				case Movie.REGULAR:											// regular movie
+			switch (rent.getMovie().getMovieType()) {
+				case REGULAR:											// regular movie
 					rentalCost += 2;										// we pay 2<money> up to 2 days of rent
 					if (rent.getDaysRented() > 2) {
 						rentalCost += (rent.getDaysRented() - 2) * 1.5; 	// and 1.5<money> per day after 2 day of rent
 					}
 					break;
 
-				case Movie.NEW_RELEASE:										// new released movie
+				case NEW_RELEASE:										// new released movie
 					rentalCost += rent.getDaysRented() * 3;					// 3<money> by day
 					break;
 
-				case Movie.CHILDRENS:										// children movie
+				case CHILDREN:										// children movie
 					rentalCost += 1.5;										// we pay 1.5<money> up to 3 days of rent
 					if (rent.getDaysRented() > 3) {
 						rentalCost += (rent.getDaysRented() - 3) * 1.5;		// and 1.5<money> per day after 3 day of rent
@@ -51,7 +51,7 @@ public class Customer
 			loyaltyPoints++; // we get 1 loyalty point per rents
 
 			// we get 1 loyalty point if we rent a new released movie more than one day
-			if(rent.getMovie().getPriceCode() == Movie.NEW_RELEASE && rent.getDaysRented() > 1) {
+			if(rent.getMovie().getMovieType() == MovieType.NEW_RELEASE && rent.getDaysRented() > 1) {
 				loyaltyPoints++;
 			}
 				
