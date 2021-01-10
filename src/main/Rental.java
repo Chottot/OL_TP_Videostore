@@ -52,7 +52,9 @@ public class Rental
 
 		int maxDaysRentable = getMovieTypeMaxDaysRentable(movie.getMovieType());
 
-		if(daysRented> maxDaysRentable && maxDaysRentable > 0){
+		if(movie.getMovieType() == MovieType.NEW_RELEASE){
+			price *= daysRented;
+		}else if(daysRented> maxDaysRentable ){
 			price += (daysRented - maxDaysRentable) *1.5f;
 		}
 		return price;

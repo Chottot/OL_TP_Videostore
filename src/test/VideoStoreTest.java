@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -14,6 +15,11 @@ public class VideoStoreTest
 
 	public VideoStoreTest(){
 		customer = new Customer("Fred");
+	}
+
+	@BeforeEach
+	public void resetCustomer(){
+		customer.resetAllRent();
 	}
 
 	@Test
@@ -43,13 +49,13 @@ public class VideoStoreTest
 	@Test
 	public void test_rental_newRelease_movie_1days(){
 		Rental rent = new Rental(newReleaseMovie,3 );
-		Assertions.assertEquals(3, rent.getPrice());
+		Assertions.assertEquals(9, rent.getPrice());
 	}
 
 	@Test
 	public void test_rental_newRelease_movie_4days(){
 		Rental rent = new Rental(newReleaseMovie,4 );
-		Assertions.assertEquals(3, rent.getPrice());
+		Assertions.assertEquals(12, rent.getPrice());
 	}
 
 	@Test
@@ -92,7 +98,8 @@ public class VideoStoreTest
 	@Test
 	public void testSingleChildrensStatement(){
 		customer.addRental(new Rental (new Movie ("The Tigger Movie", MovieType.CHILDREN), 3));
-		Assertions.assertEquals("Rental Record for Fred\n\tThe Tigger Movie\t1.5\nYou owed 1.5\nYou earned 1 frequent renter points\n", customer.statement());
+		String expected = String.format("Rental Record for Fred\n\tThe Tigger Movie\t%.1f\nYou owed %.1f\nYou earned 1 frequent renter points\n", 1.5, 1.5);
+		Assertions.assertEquals(expected, customer.statement());
 	}
 	@Test
 	public void testMultipleRegularStatement(){
