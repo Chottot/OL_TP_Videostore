@@ -3,8 +3,6 @@ import java.util.ArrayList;
 
 public class LocalCustomerBank extends CustomerBank{
 
-    private static final long serialVersionUID = 1L;
-
     private ArrayList<Customer> customers;
 
     public LocalCustomerBank() {
@@ -34,6 +32,11 @@ public class LocalCustomerBank extends CustomerBank{
     @Override
     void removeData(String name) {
         customers.removeIf(customer -> customer.getName().equals(name));
+    }
+
+    @Override
+    public ArrayList<Customer> getDataArray() {
+        return customers;
     }
 
     @Override

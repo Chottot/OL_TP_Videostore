@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public abstract class DataBase <DataType , DataIdentifierType>{
 
@@ -15,6 +16,8 @@ public abstract class DataBase <DataType , DataIdentifierType>{
     abstract DataType getData(DataIdentifierType dataID);
     abstract void addData(DataType movie);
     abstract void removeData(DataIdentifierType name);
+
+    public abstract ArrayList<DataType> getDataArray();
 
     public abstract void save();
 

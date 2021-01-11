@@ -3,8 +3,6 @@ import java.util.ArrayList;
 
 public class LocalMovieBank extends MovieBank {
 
-    private static final long serialVersionUID = 1L;
-
     ArrayList<Movie> movies;
 
     public LocalMovieBank(String ID) {
@@ -56,6 +54,11 @@ public class LocalMovieBank extends MovieBank {
     @Override
     void removeData(String name) {
         movies.removeIf(movie -> movie.getTitle().equals(name));
+    }
+
+    @Override
+    public ArrayList<Movie> getDataArray() {
+        return movies;
     }
 
 }

@@ -3,9 +3,11 @@ import java.util.ArrayList;
 
 public class Customer implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 
 	private final String name;
 	private ArrayList<Rental> rentals = new ArrayList<>();
+	private int loyaltyPoints;
 
 	public Customer(String name){
 		this.name = name;
@@ -30,7 +32,7 @@ public class Customer implements Serializable
 
 			loyaltyPoints += rent.getLoyaltyPoints();
 
-			stringBuilder.append( String.format( "\t%s\t%.1f\n", rent.getMovie().getTitle(), rentalCost ));
+			stringBuilder.append( rent.getDescription());
 
 			totalCost += rentalCost;
 		}
