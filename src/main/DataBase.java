@@ -4,6 +4,10 @@ public abstract class DataBase <DataType , DataIdentifierType>{
 
     protected String ID;
 
+    public DataBase(){
+        ID ="default";
+    }
+
     public DataBase(String ID){
         this.ID = ID;
     }

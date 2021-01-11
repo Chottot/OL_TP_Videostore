@@ -4,7 +4,34 @@ public class Main {
 
     public static void main(String[] args){
 
-        testLocalCustomerBank();
+        testVideoStore();
+        testVideoStoreLoad();
+
+    }
+
+    static void testVideoStoreLoad(){
+        try {
+            VideoStore videoStore = VideoStore.load("videoStore1");
+
+            System.out.println(videoStore.customerBank.getData("c1").getName());
+            System.out.println(videoStore.movieBank.getData("m1").getTitle());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    static void testVideoStore(){
+        VideoStore videoStore = new VideoStore("videoStore1");
+        Movie m1 = new Movie("m1", MovieType.REGULAR);
+        Customer customer = new Customer("c1");
+        customer.addRental(new Rental(m1, 5));
+
+        videoStore.movieBank.addData(m1);
+        videoStore.customerBank.addData(customer);
+
+        videoStore.save();
 
     }
 

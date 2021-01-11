@@ -3,8 +3,13 @@ import java.util.ArrayList;
 
 public class LocalCustomerBank extends CustomerBank{
 
+    private static final long serialVersionUID = 1L;
 
     private ArrayList<Customer> customers;
+
+    public LocalCustomerBank() {
+        super("");
+    }
 
     public LocalCustomerBank(String ID) {
         super(ID);

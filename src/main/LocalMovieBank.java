@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class LocalMovieBank extends MovieBank implements Serializable {
+public class LocalMovieBank extends MovieBank {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,9 +16,7 @@ public class LocalMovieBank extends MovieBank implements Serializable {
     public void save() {
         try {
             FileOutputStream fos = new FileOutputStream(ID);
-            ObjectOutputStream oos = null;
-
-            oos = new ObjectOutputStream(fos);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(movies);
             oos.close();
         } catch (IOException e) {
