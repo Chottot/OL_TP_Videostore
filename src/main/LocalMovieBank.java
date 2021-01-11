@@ -1,7 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class LocalMovieBank extends DataBase<Movie, String> implements Serializable {
+public class LocalMovieBank extends MovieBank implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     ArrayList<Movie> movies;
 
@@ -40,6 +42,11 @@ public class LocalMovieBank extends DataBase<Movie, String> implements Serializa
 
     @Override
     Movie getData(String name) {
+        for (Movie movie : movies) {
+            if(movie.getTitle().equals(name)){
+                return movie;
+            }
+        }
         return null;
     }
 
@@ -50,7 +57,7 @@ public class LocalMovieBank extends DataBase<Movie, String> implements Serializa
 
     @Override
     void removeData(String name) {
-
+        movies.removeIf(movie -> movie.getTitle().equals(name));
     }
 
 }

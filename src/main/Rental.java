@@ -1,5 +1,10 @@
-public class Rental
+import java.io.Serializable;
+
+public class Rental implements Serializable
 {
+
+	private static final long serialVersionUID = 5512234731442983181L;
+
 	private final Movie movie;
 	private final int daysRented;
 

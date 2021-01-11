@@ -2,6 +2,7 @@ import java.io.Serializable;
 
 public class Movie implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 
 	private final String title;
 	private final MovieType movieType;
