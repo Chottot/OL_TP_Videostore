@@ -14,11 +14,11 @@ public class Customer implements Serializable
 		loyaltyPoints = 0;
 	}
 
-	public void addRental(IRentable rentable, int daysRented){
-		addRental(new Rental(rentable, daysRented));
+	public void addRental(IRentable rentable, int daysRented, boolean usePoints){
+		addRental( new Rental(rentable, daysRented, this, usePoints));
 	}
 	
-	public void addRental(Rental rental){
+	private void addRental(Rental rental){
 		addLoyaltyPoints( rental.getLoyaltyPoints());
 		rentals.add(rental);
 	}

@@ -15,7 +15,26 @@ public class VideoStore implements Serializable {
         this.ID = ID;
         movieBank = new LocalMovieBank(ID+"_movieBank");
         customerBank = new LocalCustomerBank(ID+"_customerBank");
+    }
 
+    public void addMovie(Movie movie){
+        movieBank.addData(movie);
+    }
+
+    public void addCustomer(Customer customer){
+        customerBank.addData(customer);
+    }
+
+    public Movie createAndAddMovie(String movieTitle, MovieType movieType){
+        Movie movie = new Movie(movieTitle, movieType);
+        addMovie( movie);
+        return movie;
+    }
+
+    public Customer createAndAddCustomer(String customerName){
+        Customer customer = new Customer(customerName);
+        addCustomer( customer);
+        return  customer;
     }
 
     public void save(){

@@ -7,10 +7,12 @@ public class Rental implements Serializable
 
 	private final IRentable rentable;
 	private final int daysRented;
+	private float price;
 
-	public Rental(IRentable rentable, int daysRented){
+	public Rental(IRentable rentable, int daysRented, Customer customer, boolean usePoints){
 		this.rentable = rentable;
 		this.daysRented = daysRented;
+		price = rentable.getPrice(daysRented, customer, usePoints);
 	}
 
 	public int getDaysRented(){
@@ -23,7 +25,7 @@ public class Rental implements Serializable
 	 * @return the price of this rent depending on the movie the number of days rented
 	 */
 	public float getPrice(){
-		return rentable.getPrice(daysRented, 0);
+		return price;
 	}
 
 	/**

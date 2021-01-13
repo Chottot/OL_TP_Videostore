@@ -58,7 +58,7 @@ public class Movie implements IRentable, Serializable
 	 * @return the price of this rent depending on the movie the number of days rented
 	 */
 	@Override
-	public float getPrice(int daysRented, int loyaltyPoint) {
+	public float getPrice(int daysRented, Customer customer, boolean usePoints) {
 		float price = getMovieTypeBasePrice();
 
 		int maxDaysRentable = getMovieTypeMaxDaysRentable();

@@ -26,7 +26,7 @@ public class Main {
         VideoStore videoStore = new VideoStore("videoStore1");
         Movie m1 = new Movie("m1", MovieType.REGULAR);
         Customer customer = new Customer("c1");
-        customer.addRental(new Rental(m1, 5));
+        customer.addRental(m1, 5, false);
 
         videoStore.movieBank.addData(m1);
         videoStore.customerBank.addData(customer);
