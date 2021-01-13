@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class CustomerBank extends DataBase<Customer, String> implements Serializable {
