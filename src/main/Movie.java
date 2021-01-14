@@ -4,6 +4,8 @@ public class Movie implements IRentable, Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	public static final int maxUsableLoyaltyPoints = 3;
+
 	private final String title;
 	private final MovieType movieType;
 	
@@ -55,19 +57,36 @@ public class Movie implements IRentable, Serializable
 
 	/**
 	 *
-	 * @return the price of this rent depending on the movie the number of days rented
+	 * @return the price of this rent depending on the movie the number of days rented and the customer LoyaltyPoints
+	 *
+	 * 10% reduction per LoyaltyPoints used up to 30%
+	 *
 	 */
 	@Override
-	public float getPrice(int daysRented, Customer customer, boolean usePoints) {
-		float price = getMovieTypeBasePrice();
+	public double getPrice(int daysRented, Customer customer, int usedPoints) {
+
+		if(usedPoints> Movie.maxUsableLoyaltyPoints || usedPoints < 0){
+			usedPoints = Movie.maxUsableLoyaltyPoints;
+		}
+
+		if( usedPoints > customer.getLoyaltyPoints() ){
+			usedPoints = customer.getLoyaltyPoints();
+		}
+
+		customer.addLoyaltyPoints( -usedPoints);
+
+		double price = getMovieTypeBasePrice();
 
 		int maxDaysRentable = getMovieTypeMaxDaysRentable();
 
 		if(movieType == MovieType.NEW_RELEASE){
 			price *= daysRented;
 		}else if(daysRented> maxDaysRentable ){
-			price += (daysRented - maxDaysRentable) *1.5f;
+			price += (daysRented - maxDaysRentable) *1.5d;
 		}
+
+		price *= 1.d - usedPoints*0.1d;
+
 		return price;
 	}
 

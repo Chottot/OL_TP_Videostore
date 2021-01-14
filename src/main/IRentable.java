@@ -1,6 +1,6 @@
 public interface IRentable {
 
     String getDescription();
-    float getPrice(int daysRented, Customer customer, boolean usePoints);
+    double getPrice(int daysRented, Customer customer, int usedPoints);
     int getLoyaltyPoints(int daysRented);
 }

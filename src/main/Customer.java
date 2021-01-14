@@ -14,8 +14,8 @@ public class Customer implements Serializable
 		loyaltyPoints = 0;
 	}
 
-	public void addRental(IRentable rentable, int daysRented, boolean usePoints){
-		addRental( new Rental(rentable, daysRented, this, usePoints));
+	public void addRental(IRentable rentable, int daysRented, int usedPoints){
+		addRental( new Rental(rentable, daysRented, this, usedPoints) );
 	}
 	
 	private void addRental(Rental rental){
@@ -59,11 +59,7 @@ public class Customer implements Serializable
 	 *
 	 */
 	public void setLoyaltyPoints(int loyaltyPoints){
-		if(loyaltyPoints<0){
-			this.loyaltyPoints = 0;
-		}else{
-			this.loyaltyPoints = loyaltyPoints;
-		}
+		this.loyaltyPoints = Math.max(loyaltyPoints, 0);
 	}
 
 	/**
@@ -79,4 +75,7 @@ public class Customer implements Serializable
 		rentals = new ArrayList<>();
 	}
 
+	public ArrayList<Rental> getRentals() {
+		return rentals;
+	}
 }
