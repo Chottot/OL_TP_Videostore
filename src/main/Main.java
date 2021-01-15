@@ -13,10 +13,10 @@ public class Main {
         try {
             VideoStore videoStore = VideoStore.load("videoStore1");
 
-            System.out.println(videoStore.customerBank.getData("c1").getName());
-            System.out.println(videoStore.movieBank.getData("m1").getTitle());
+            System.out.println(videoStore.getCustomer("c1").getName());
+            System.out.println(videoStore.getMovie("m1").getTitle());
 
-            System.out.println(videoStore.customerBank.getData("c1").statement());
+            System.out.println(videoStore.getCustomer("c1").statement());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class Main {
         customer.createAndAddRental(m1, 5, 0);
 
         videoStore.addMovie(m1);
-        videoStore.customerBank.addData(customer);
+        videoStore.getCustomer(customer.getName());
 
         videoStore.save();
 

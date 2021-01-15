@@ -4,9 +4,9 @@ public class VideoStore implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    String ID;
-    public MovieBank movieBank;
-    public CustomerBank customerBank;
+    private final String ID;
+    private final MovieBank movieBank;
+    private final CustomerBank customerBank;
 
     /**
      * create a default videoStore with the name "VideoStore"
