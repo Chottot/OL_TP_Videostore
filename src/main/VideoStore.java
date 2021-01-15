@@ -9,7 +9,7 @@ public class VideoStore implements Serializable {
     public CustomerBank customerBank;
 
     public VideoStore() {
-        this.ID = "default";
+        this.ID = "VideoStore";
         movieBank = new LocalMovieBank(ID+"_movieBank");
         customerBank = new LocalCustomerBank(ID+"_customerBank");
     }
@@ -26,6 +26,18 @@ public class VideoStore implements Serializable {
 
     public void addCustomer(Customer customer){
         customerBank.addData(customer);
+    }
+
+    public void removeMovie(Movie movie){ movieBank.removeData(movie.getTitle()); }
+
+    public void removeCustomer(Customer customer){
+        customerBank.removeData(customer.getName());
+    }
+
+    public void removeMovie(String movieTitle){ movieBank.removeData(movieTitle); }
+
+    public void removeCustomer(String customerName){
+        customerBank.removeData(customerName);
     }
 
     public Movie createAndAddMovie(String movieTitle, MovieType movieType){

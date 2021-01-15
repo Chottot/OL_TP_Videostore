@@ -6,7 +6,7 @@ public abstract class DataBase <DataType , DataIdentifierType>{
     protected String ID;
 
     public DataBase(){
-        ID ="default";
+        ID ="defaultDataBase";
     }
 
     public DataBase(String ID){

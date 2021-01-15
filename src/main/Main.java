@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args){
 
-       // testVideoStore();
+        //testVideoStore();
         testVideoStoreLoad();
 
     }
@@ -15,6 +15,8 @@ public class Main {
 
             System.out.println(videoStore.customerBank.getData("c1").getName());
             System.out.println(videoStore.movieBank.getData("m1").getTitle());
+
+            System.out.println(videoStore.customerBank.getData("c1").statement());
 
         } catch (IOException e) {
             e.printStackTrace();

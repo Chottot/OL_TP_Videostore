@@ -22,6 +22,7 @@ public class LocalMovieBank extends MovieBank {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void Load() throws IOException {
         FileInputStream fin = new FileInputStream(ID);
