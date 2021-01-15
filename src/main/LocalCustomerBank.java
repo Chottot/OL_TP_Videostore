@@ -5,10 +5,6 @@ public class LocalCustomerBank extends CustomerBank{
 
     private ArrayList<Customer> customers;
 
-    public LocalCustomerBank() {
-        super("");
-    }
-
     public LocalCustomerBank(String ID) {
         super(ID);
         customers = new ArrayList<>();
@@ -43,9 +39,7 @@ public class LocalCustomerBank extends CustomerBank{
     public void save() {
         try {
             FileOutputStream fos = new FileOutputStream(ID);
-            ObjectOutputStream oos = null;
-
-            oos = new ObjectOutputStream(fos);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(customers);
             oos.close();
         } catch (IOException e) {
@@ -53,6 +47,7 @@ public class LocalCustomerBank extends CustomerBank{
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void Load() throws IOException {
         FileInputStream fin = new FileInputStream(ID);

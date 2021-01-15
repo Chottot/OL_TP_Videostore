@@ -9,6 +9,9 @@ public class VideoStore implements Serializable {
     public CustomerBank customerBank;
 
     public VideoStore() {
+        this.ID = "default";
+        movieBank = new LocalMovieBank(ID+"_movieBank");
+        customerBank = new LocalCustomerBank(ID+"_customerBank");
     }
 
     public VideoStore(String ID) {

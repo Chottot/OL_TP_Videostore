@@ -29,14 +29,11 @@ public class Customer implements Serializable
 	
 	public String statement(){
 		double totalCost = 0; 		// total cost
-		int	loyaltyPoints = 0;		// loyalty points
 
 		StringBuilder stringBuilder = new StringBuilder( String.format( "Rental Record for %s\n", getName()) );
 
 		for (Rental rent: rentals) {
 			double rentalCost = rent.getPrice();		// cost of the rent
-
-			loyaltyPoints += rent.getLoyaltyPoints();
 
 			stringBuilder.append( rent.getDescription());
 
@@ -73,6 +70,7 @@ public class Customer implements Serializable
 
 	public void resetAllRent(){
 		rentals = new ArrayList<>();
+		loyaltyPoints = 0;
 	}
 
 	public ArrayList<Rental> getRentals() {

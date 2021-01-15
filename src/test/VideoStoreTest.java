@@ -38,12 +38,14 @@ public class VideoStoreTest
 	public void test_rental_children_movie_3days(){
 		Rental rent = new Rental(childrenMovie,3 , customer, 0);
 		Assertions.assertEquals(1.5, rent.getPrice());
+		Assertions.assertEquals(1, rent.getLoyaltyPoints());
 	}
 
 	@Test
 	public void test_rental_children_movie_4days(){
 		Rental rent = new Rental(childrenMovie,4 , customer, 0);
 		Assertions.assertEquals(3, rent.getPrice());
+		Assertions.assertEquals(1, rent.getLoyaltyPoints());
 	}
 
 	@Test
@@ -125,6 +127,16 @@ public class VideoStoreTest
 		customer.addRental( new Movie("8 1/2", MovieType.REGULAR), 2, 0);
 		customer.addRental( new Movie("Eraserhead", MovieType.REGULAR), 3, 0);
 		String expected = String.format("Rental Record for Fred\n\tPlan 9 from Outer Space\t%.1f\n\t8 1/2\t%.1f\n\tEraserhead\t%.1f\nYou owed %.1f\nYou earned 3 frequent renter points\n", 2.0, 2.0, 3.5, 7.5);
+		Assertions.assertEquals(expected, customer.statement());
+	}
+
+	@Test
+	public void testStatement(){
+		customer.addRental( new Movie("Plan 9 from Outer Space", MovieType.REGULAR), 1, 0);
+		customer.addRental( new Movie("8 1/2", MovieType.REGULAR), 2, 0);
+		customer.addRental( new Movie("The Cell", MovieType.NEW_RELEASE), 4, 2);
+		customer.addRental( new Movie("Eraserhead", MovieType.REGULAR), 3, 4);
+		String expected = String.format("Rental Record for Fred\n\tPlan 9 from Outer Space\t%.1f\n\t8 1/2\t%.1f\n\tThe Cell\t%.1f\n\tEraserhead\t%.1f\nYou owed %.1f\nYou earned 1 frequent renter points\n", 2.0, 2.0, 9.6, 2.8, 16.4);
 		Assertions.assertEquals(expected, customer.statement());
 	}
 
