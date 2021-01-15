@@ -21,7 +21,7 @@ public class LocalMovieBank extends MovieBank {
             e.printStackTrace();
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     @Override
     public void Load() throws IOException {

@@ -6,7 +6,14 @@ public class Movie implements IRentable, Serializable
 
 	public static final int maxUsableLoyaltyPoints = 3;
 
+	/**
+	 * the movie title
+	 */
 	private final String title;
+
+	/**
+	 * the movie type
+	 */
 	private final MovieType movieType;
 	
 	public Movie (String title, MovieType movieType) {
@@ -37,9 +44,11 @@ public class Movie implements IRentable, Serializable
 	/**
 	 * @return the number of maximun days we can rent the movie depending of his type
 	 *
-	 * if we rent the movie longer then that we pays more
+	 * <p> <br>
+	 * if we rent the movie longer then that we pays more <br>
 	 *
 	 * if the movie has no limit on the day rented return -1
+	 * </p>
 	 */
 	private int getMovieTypeMaxDaysRentable(){
 		switch (movieType){
@@ -57,10 +66,21 @@ public class Movie implements IRentable, Serializable
 
 	/**
 	 *
+	 * @param daysRented  the number of days we rent the movie
+	 * @param customer    the customer that rent the moive
+	 * @param usedPoints  the number of point the customer want to use
+	 *
 	 * @return the price of this rent depending on the movie the number of days rented and the customer LoyaltyPoints
 	 *
-	 * 10% reduction per LoyaltyPoints used up to 30%
+	 * <p> <br>
 	 *
+	 * the price for a new released movie is {@link Movie#getMovieTypeBasePrice()} * the daysRented <br>
+	 *
+	 * for the other type the price is {@link Movie#getMovieTypeBasePrice()} + (daysRented - {@link Movie#getMovieTypeMaxDaysRentable()}) *1.5d; <br>
+	 *
+	 * 10% reduction per LoyaltyPoints used up to {@link Movie#maxUsableLoyaltyPoints} points <br>
+	 * if the usedPoints are more than the customer {@link Customer#getLoyaltyPoints()} then alle the user point a used up to {@link Movie#maxUsableLoyaltyPoints} points
+	 * </p>
 	 */
 	@Override
 	public double getPrice(int daysRented, Customer customer, int usedPoints) {
@@ -94,9 +114,10 @@ public class Movie implements IRentable, Serializable
 	 *
 	 * @return the number of loyalty points earned with this rent
 	 *
-	 * we gain 1 loyalty points per rent
+	 * <p><br>
+	 * we gain 1 loyalty points per rent<br>
 	 * and 1 more if we rent e new released movie more than one day
-	 *
+	 *</p>
 	 */
 	@Override
 	public int getLoyaltyPoints(int daysRented) {
