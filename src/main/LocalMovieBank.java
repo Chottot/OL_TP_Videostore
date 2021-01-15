@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * this class save all the Movie to a local file
+ */
 public class LocalMovieBank extends MovieBank {
 
     ArrayList<Movie> movies;
@@ -24,7 +27,7 @@ public class LocalMovieBank extends MovieBank {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void Load() throws IOException {
+    public void load() throws IOException {
         FileInputStream fin = new FileInputStream(ID);
         ObjectInputStream ois = new ObjectInputStream(fin);
 

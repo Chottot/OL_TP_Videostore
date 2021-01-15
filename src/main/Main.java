@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args){
 
-        //testVideoStore();
+       // testVideoStore();
         testVideoStoreLoad();
 
     }
@@ -31,7 +31,7 @@ public class Main {
         customer.createAndAddRental(m1, 5, 0);
 
         videoStore.addMovie(m1);
-        videoStore.getCustomer(customer.getName());
+        videoStore.addCustomer(customer);
 
         videoStore.save();
 
@@ -44,7 +44,7 @@ public class Main {
         bank.save();
 
         try {
-            bank.Load();
+            bank.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class Main {
         bank.save();
 
         try {
-            bank.Load();
+            bank.load();
         } catch (IOException e) {
             e.printStackTrace();
         }

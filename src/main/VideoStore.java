@@ -4,17 +4,14 @@ public class VideoStore implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final String ID;
-    private final MovieBank movieBank;
-    private final CustomerBank customerBank;
+    private  String ID;
+    private  MovieBank movieBank;
+    private  CustomerBank customerBank;
 
     /**
      * create a default videoStore with the name "VideoStore"
      */
     public VideoStore() {
-        this.ID = "VideoStore";
-        movieBank = new LocalMovieBank(ID+"_movieBank");
-        customerBank = new LocalCustomerBank(ID+"_customerBank");
     }
 
     /**
@@ -115,6 +112,8 @@ public class VideoStore implements Serializable {
         try {
             FileOutputStream fos = new FileOutputStream(ID);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
+            customerBank.save();
+            movieBank.save();
             oos.writeObject(this);
             oos.close();
         } catch (IOException e) {
@@ -125,9 +124,12 @@ public class VideoStore implements Serializable {
     public static VideoStore load(String name) throws IOException {
         FileInputStream fin = new FileInputStream(name);
         ObjectInputStream ois = new ObjectInputStream(fin);
+
         VideoStore videoStore = null;
         try {
             videoStore = (VideoStore) ois.readObject();
+            videoStore.customerBank.load();
+            videoStore.movieBank.load();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

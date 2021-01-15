@@ -1,12 +1,12 @@
 import java.io.Serializable;
 
-public abstract class CustomerBank extends DataBase<Customer, String> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    public CustomerBank(){
-        super();
-    }
+/**
+ * any class that extends this class
+ * should be able to save durably all the customer
+ * and to load it back
+ */
+public abstract class CustomerBank extends DataBase<Customer, String>  {
 
     public CustomerBank(String ID) {
         super(ID);

@@ -6,7 +6,9 @@ import java.util.ArrayList;
  * @param <DataType>            the type of data that os stored
  * @param <DataIdentifierType>  the type of the identifier of the data stored
  */
-public abstract class DataBase <DataType , DataIdentifierType>{
+public abstract class DataBase <DataType , DataIdentifierType> implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * the ID or name of the data Base
@@ -14,11 +16,7 @@ public abstract class DataBase <DataType , DataIdentifierType>{
     protected String ID;
 
 
-    /**
-     * create a default data Base with ID "defaultDataBase"
-     */
     public DataBase(){
-        ID ="defaultDataBase";
     }
 
     /**
@@ -51,6 +49,6 @@ public abstract class DataBase <DataType , DataIdentifierType>{
 
     public abstract void save();
 
-    public abstract void Load() throws IOException;
+    public abstract void load() throws IOException;
 
 }
